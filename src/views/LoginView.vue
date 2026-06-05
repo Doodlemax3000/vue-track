@@ -23,7 +23,22 @@ function login(event: Event) {
 
 <template>
   <h1 class="text-3xl">Login</h1>
-  <Card>
+
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-2xl w-full border p-4">
+    <legend class="fieldset-legend">Login</legend>
+
+    <label class="label">Email</label>
+    <input type="email" class="input w-full md:max-w-lg" placeholder="yourname@example.com" />
+
+    <label class="label">Password</label>
+    <input type="password" class="input w-full md:max-w-lg" placeholder="Enter a password" />
+
+    <div class="flex gap-4">
+      <button class="btn rounded-xl mt-4" @click="register">Register</button>
+      <button class="btn rounded-xl btn-neutral mt-4" @click="login">Login</button>
+    </div>
+  </fieldset>
+  <!--
     <form class="space-y-4">
       <FormField label="Email" for="email">
         <BaseInput id="email" type="email" placeholder="yourname@example.com" />
@@ -41,6 +56,5 @@ function login(event: Event) {
         <Button variant="secondary" class="mx-auto w-full" @click="register">Register</Button>
         <Button variant="primary" class="mx-auto w-full" @click="login">Login</Button>
       </div>
-    </form>
-  </Card>
+    </form>-->
 </template>
