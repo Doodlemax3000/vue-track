@@ -31,7 +31,7 @@ const buttonClasses = computed(() => [
   // Variants
   {
     // Main CTA
-    'bg-zinc-100 text-zinc-950 hover:bg-white active:scale-[0.98]': props.variant === 'primary',
+    'bg-zinc-100 text-zinc-950 hover:bg-zinc-300 active:scale-[0.98]': props.variant === 'primary',
 
     // Secondary action
     'border border-zinc-700 bg-zinc-900 text-zinc-100 hover:bg-zinc-800 active:scale-[0.98]':

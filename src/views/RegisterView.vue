@@ -6,16 +6,18 @@ import FormField from '@/components/ui/FormField.vue'
 
 import { ref } from 'vue'
 
-const errorMsg = ref('')
+import router from '@/router/index.ts'
 
-function register(event: Event) {
-  event.preventDefault()
-  errorMsg.value = ''
-}
+const errorMsg = ref('')
 
 function login(event: Event) {
   event.preventDefault()
-  errorMsg.value = 'Error: something went wrong'
+  router.push('/login')
+}
+
+function register(event: Event) {
+  event.preventDefault()
+  errorMsg.value = 'Registering'
 }
 </script>
 
