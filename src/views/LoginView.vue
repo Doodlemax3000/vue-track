@@ -30,6 +30,8 @@ function login(event: Event) {
     <label class="label">Password</label>
     <BaseInput type="password" placeholder="Enter a password" />
 
+    <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
+
     <div class="flex gap-4">
       <Button @click="register">Register</Button>
       <Button class="btn-neutral" @click="login">Login</Button>

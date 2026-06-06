@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import Card from '@/components/ui/Card.vue'
 import Button from '@/components/ui/Button.vue'
 import BaseInput from '@/components/ui/BaseInput.vue'
-import FormField from '@/components/ui/FormField.vue'
+import FieldSet from '@/components/ui/FieldSet.vue'
 
 import { ref } from 'vue'
 
@@ -23,32 +22,25 @@ function register(event: Event) {
 
 <template>
   <h1 class="text-3xl">Register</h1>
-  <Card>
-    <form class="space-y-4">
-      <FormField label="Email" for="email">
-        <BaseInput id="email" type="email" placeholder="yourname@example.com" />
-      </FormField>
 
-      <FormField label="Email Again" for="email2">
-        <BaseInput id="email2" type="email" placeholder="yourname@example.com" />
-      </FormField>
+  <FieldSet class="mt-6">
+    <label class="label">Email</label>
+    <BaseInput type="email" placeholder="yourname@example.com" />
 
-      <FormField label="Password" for="password">
-        <BaseInput id="password" type="password" placeholder="Enter a password" />
-      </FormField>
+    <label class="label">Email Again</label>
+    <BaseInput type="email" placeholder="yourname@example.com" />
 
-      <FormField label="Password Again" for="password2">
-        <BaseInput id="password2" type="password" placeholder="Enter the password again" />
-      </FormField>
+    <label class="label">Password</label>
+    <BaseInput type="password" placeholder="Enter a password" />
 
-      <div>
-        <p class="text-red-400">{{ errorMsg }}</p>
-      </div>
+    <label class="label">Password Again</label>
+    <BaseInput type="password" placeholder="Enter the password again" />
 
-      <div class="flex gap-4 mt-6">
-        <Button variant="secondary" class="mx-auto w-full" @click="login">Login</Button>
-        <Button variant="primary" class="mx-auto w-full" @click="register">Register</Button>
-      </div>
-    </form>
-  </Card>
+    <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
+
+    <div class="flex gap-4">
+      <Button @click="login">Login</Button>
+      <Button class="btn-neutral" @click="register">Register</Button>
+    </div>
+  </FieldSet>
 </template>
