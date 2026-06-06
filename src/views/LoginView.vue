@@ -21,9 +21,7 @@ function login(event: Event) {
 </script>
 
 <template>
-  <h1 class="text-3xl">Login</h1>
-
-  <FieldSet class="mt-6">
+  <FieldSet class="mt-6" legend="Login">
     <label class="label">Email</label>
     <BaseInput type="email" placeholder="yourname@example.com" />
 
@@ -32,7 +30,7 @@ function login(event: Event) {
 
     <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
 
-    <div class="flex gap-4">
+    <div class="flex gap-4 mt-4">
       <Button @click="register">Register</Button>
       <Button class="btn-neutral" @click="login">Login</Button>
     </div>
