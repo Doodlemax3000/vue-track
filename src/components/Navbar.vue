@@ -10,9 +10,17 @@ const authStore = useAuthStore()
     <RouterLink to="/">
       <h1 class="text-3xl">MyTrack</h1>
     </RouterLink>
-    <p class="ml-auto">
-      {{ authStore.user ? authStore.user.email : 'not logged in' }}
-    </p>
-    <Button class="btn-neutral">Logout</Button>
+    <div v-if="authStore.user" class="ml-auto flex items-center gap-4">
+      <p>{{ authStore.user.email }}</p>
+      <Button class="btn-neutral">Logout</Button>
+    </div>
+    <div v-else class="ml-auto flex items-center gap-4">
+      <RouterLink to="/login">
+        <Button class="btn-neutral">Login</Button>
+      </RouterLink>
+      <RouterLink to="/register">
+        <Button class="btn-neutral">Register</Button>
+      </RouterLink>
+    </div>
   </div>
 </template>
