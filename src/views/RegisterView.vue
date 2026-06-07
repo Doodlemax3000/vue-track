@@ -9,11 +9,6 @@ import router from '@/router/index.ts'
 
 const errorMsg = ref('')
 
-function login(event: Event) {
-  event.preventDefault()
-  router.push('/login')
-}
-
 function register(event: Event) {
   event.preventDefault()
   errorMsg.value = 'Registering'
@@ -37,7 +32,9 @@ function register(event: Event) {
     <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
 
     <div class="flex gap-4 mt-4">
-      <Button @click="login">Login</Button>
+      <RouterLink to="/login">
+        <Button>Login</Button>
+      </RouterLink>
       <Button class="btn-neutral" @click="register">Register</Button>
     </div>
   </FieldSet>

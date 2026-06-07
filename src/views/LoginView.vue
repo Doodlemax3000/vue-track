@@ -5,14 +5,7 @@ import Button from '@/components/ui/Button.vue'
 
 import { ref } from 'vue'
 
-import router from '@/router/index.ts'
-
 const errorMsg = ref('')
-
-function register(event: Event) {
-  event.preventDefault()
-  router.push('/register')
-}
 
 function login(event: Event) {
   event.preventDefault()
@@ -31,7 +24,9 @@ function login(event: Event) {
     <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
 
     <div class="flex gap-4 mt-4">
-      <Button @click="register">Register</Button>
+      <RouterLink to="/register">
+        <Button>Register</Button>
+      </RouterLink>
       <Button class="btn-neutral" @click="login">Login</Button>
     </div>
   </FieldSet>

@@ -18,9 +18,6 @@ const authStore = useAuthStore()
       <RouterLink to="/login">
         <Button class="btn-neutral">Login</Button>
       </RouterLink>
-      <RouterLink to="/register">
-        <Button class="btn-neutral">Register</Button>
-      </RouterLink>
     </div>
   </div>
 </template>
