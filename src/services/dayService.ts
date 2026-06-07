@@ -266,8 +266,8 @@ export async function getCalendarDaysFromTodayNoGaps(
   uid: string,
   daysBack: number,
 ): Promise<CalendarDay[]> {
-  const existingDays = await getCalendarDaysFromToday(uid, 14)
-  const dateRange = createDateRange(14)
+  const existingDays = await getCalendarDaysFromToday(uid, daysBack)
+  const dateRange = createDateRange(daysBack)
 
   const result = dateRange.map((date) => {
     const existing = existingDays.find((day) => day.date === date)
