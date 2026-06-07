@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app'
 
+import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth'
+
+import { getFirestore } from 'firebase/firestore'
+
+// firebase configuration using environment variables
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -9,4 +14,12 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-export const firebaseApp = initializeApp(firebaseConfig)
+// init firebase app
+const app = initializeApp(firebaseConfig)
+
+// exports
+export const auth = getAuth(app)
+
+export const db = getFirestore(app)
+
+await setPersistence(auth, browserLocalPersistence)
