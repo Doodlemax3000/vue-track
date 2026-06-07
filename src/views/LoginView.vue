@@ -4,22 +4,45 @@ import BaseInput from '@/components/ui/BaseInput.vue'
 import Button from '@/components/ui/Button.vue'
 
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth.ts'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const email = ref('')
+const password = ref('')
 
 const errorMsg = ref('')
 
-function login(event: Event) {
+async function login(event: Event) {
   event.preventDefault()
-  errorMsg.value = 'Logging in'
+  if (email.value === '' || password.value === '') {
+    errorMsg.value = 'Please enter both email and password'
+    return
+  }
+
+  try {
+    await authStore.login(email.value, password.value)
+
+    email.value = ''
+    password.value = ''
+
+    router.push('/dashboard')
+  } catch (error) {
+    errorMsg.value = 'Login error: Invalid email or password'
+    console.error('Login error:', error)
+  }
 }
 </script>
 
 <template>
   <FieldSet class="mt-6" legend="Login">
     <label class="label">Email</label>
-    <BaseInput type="email" placeholder="yourname@example.com" />
+    <BaseInput v-model="email" type="email" placeholder="yourname@example.com" />
 
     <label class="label">Password</label>
-    <BaseInput type="password" placeholder="Enter a password" />
+    <BaseInput v-model="password" type="password" placeholder="Enter a password" />
 
     <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
 
