@@ -6,28 +6,72 @@ import FieldSet from '@/components/ui/FieldSet.vue'
 import { ref } from 'vue'
 
 import router from '@/router/index.ts'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+
+const email = ref('')
+const email2 = ref('')
+const password = ref('')
+const password2 = ref('')
 
 const errorMsg = ref('')
 
-function register(event: Event) {
+async function register(event: Event) {
   event.preventDefault()
-  errorMsg.value = 'Registering'
+  if (
+    email.value === '' ||
+    password.value === '' ||
+    email2.value === '' ||
+    password2.value === ''
+  ) {
+    errorMsg.value = 'Please enter both email addresses and passwords'
+    return
+  }
+
+  if (email.value !== email2.value) {
+    errorMsg.value = 'Email addresses do not match'
+    email.value = ''
+    email2.value = ''
+    return
+  }
+
+  if (password.value !== password2.value) {
+    errorMsg.value = 'Passwords do not match'
+    password.value = ''
+    password2.value = ''
+    return
+  }
+
+  try {
+    await authStore.register(email.value, password.value)
+
+    email.value = ''
+    email2.value = ''
+    password.value = ''
+    password2.value = ''
+
+    router.push('/dashboard')
+  } catch (error) {
+    errorMsg.value = 'Registration error: Invalid email or password'
+    console.error('Registration error:', error)
+  }
 }
 </script>
 
 <template>
   <FieldSet class="mt-6" legend="Register">
     <label class="label">Email</label>
-    <BaseInput type="email" placeholder="yourname@example.com" />
+    <BaseInput v-model="email" type="email" placeholder="yourname@example.com" />
 
     <label class="label">Email Again</label>
-    <BaseInput type="email" placeholder="yourname@example.com" />
+    <BaseInput v-model="email2" type="email" placeholder="yourname@example.com" />
 
     <label class="label">Password</label>
-    <BaseInput type="password" placeholder="Enter a password" />
+    <BaseInput v-model="password" type="password" placeholder="Enter a password" />
 
     <label class="label">Password Again</label>
-    <BaseInput type="password" placeholder="Enter the password again" />
+    <BaseInput v-model="password2" type="password" placeholder="Enter the password again" />
 
     <p v-if="errorMsg" class="text-red-400 mt-4">{{ errorMsg }}</p>
 
