@@ -34,9 +34,13 @@ const leadingEmptyDays = computed(() => {
 </script>
 
 <template>
-  <p>This is your personal dashboard.</p>
+  <div class="my-4 flex items-center gap-4">
+    <p>This is your personal dashboard.</p>
+  </div>
   <div class="mt-4 flex items-center gap-4">
-    <Button class="btn btn-neutral" onclick="log_activity_modal.showModal()">Log Activity</Button>
+    <RouterLink to="/log-activity">
+      <Button class="btn-neutral">Log Activity</Button>
+    </RouterLink>
   </div>
 
   <div class="grid grid-cols-7 gap-3 text-center text-xs text-zinc-500 mt-6">

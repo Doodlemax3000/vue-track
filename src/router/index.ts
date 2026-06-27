@@ -11,6 +11,12 @@ const routes = [
     component: () => import('@/views/DashboardView.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/log-activity',
+    name: 'LogActivity',
+    component: () => import('@/views/LogActivityView.vue'),
+    meta: { requiresAuth: true },
+  },
 ]
 
 const router = createRouter({
