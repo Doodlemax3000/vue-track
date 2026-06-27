@@ -22,7 +22,7 @@ async function logout() {
       <h1 class="text-3xl">MyTrack</h1>
     </RouterLink>
     <div v-if="authStore.user" class="ml-auto flex items-center gap-4">
-      <p>{{ authStore.user.email }}</p>
+      <p class="text-xs">{{ authStore.user.email }}</p>
       <Button class="btn-neutral" @click="logout">Logout</Button>
     </div>
     <div v-else class="ml-auto flex items-center gap-4">

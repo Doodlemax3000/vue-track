@@ -3,6 +3,7 @@ import { onMounted, ref, computed } from 'vue'
 import { getCalendarDaysFromTodayNoGaps } from '@/services/dayService'
 import type { CalendarDay } from '@/services/dayService'
 import { useAuthStore } from '@/stores/auth'
+import Button from '@/components/ui/Button.vue'
 
 const authStore = useAuthStore()
 const calendarDays = ref<CalendarDay[]>([])
@@ -34,6 +35,22 @@ const leadingEmptyDays = computed(() => {
 
 <template>
   <p>This is your personal dashboard.</p>
+  <div class="mt-4 flex items-center gap-4">
+    <Button class="btn btn-neutral" onclick="log_activity_modal.showModal()">Log Activity</Button>
+    <dialog id="log_activity_modal" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">Log Activity</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <Button class="btn-neutral mr-2">Cancel</Button>
+            <Button class="btn btn-primary">Log</Button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
   <div class="grid grid-cols-7 gap-3 text-center text-xs text-zinc-500 mt-6">
     <span>Mon</span>
     <span>Tue</span>
